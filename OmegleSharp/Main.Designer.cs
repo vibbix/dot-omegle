@@ -33,7 +33,11 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStripTime = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripContainer = new System.Windows.Forms.ToolStripContainer();
+            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.textEntryBox = new System.Windows.Forms.TextBox();
+            this.conversationBox = new System.Windows.Forms.WebBrowser();
+            this.conversationTimer = new System.Windows.Forms.Timer(this.components);
             this.connectToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.reconnectToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -44,6 +48,7 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.facebookToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.currentbotToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.botSelCleverbotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,18 +59,15 @@
             this.botStartsConversationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.restartBotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripContainer = new System.Windows.Forms.ToolStripContainer();
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.textEntryBox = new System.Windows.Forms.TextBox();
-            this.conversationBox = new System.Windows.Forms.WebBrowser();
-            this.conversationTimer = new System.Windows.Forms.Timer(this.components);
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.SetIntrestsToolstripButton = new System.Windows.Forms.ToolStripButton();
             this.statusStrip.SuspendLayout();
-            this.toolStrip.SuspendLayout();
             this.toolStripContainer.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer.ContentPanel.SuspendLayout();
             this.toolStripContainer.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
+            this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip
@@ -95,28 +97,75 @@
             this.statusStripTime.Text = "Time";
             this.statusStripTime.ToolTipText = "Conversation time";
             // 
-            // toolStrip
+            // toolStripContainer
             // 
-            this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.connectToolStripButton,
-            this.reconnectToolStripButton,
-            this.toolStripSeparator2,
-            this.saveToolStripButton,
-            this.printToolStripButton,
-            this.toolStripSeparator,
-            this.copyToolStripButton,
-            this.toolStripSeparator3,
-            this.facebookToolStripButton,
-            this.toolStripSeparator1,
-            this.helpToolStripButton,
-            this.currentbotToolStripButton});
-            this.toolStrip.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(689, 25);
-            this.toolStrip.Stretch = true;
-            this.toolStrip.TabIndex = 20;
-            this.toolStrip.Text = "Toolbar";
+            // 
+            // toolStripContainer.BottomToolStripPanel
+            // 
+            this.toolStripContainer.BottomToolStripPanel.Controls.Add(this.statusStrip);
+            // 
+            // toolStripContainer.ContentPanel
+            // 
+            this.toolStripContainer.ContentPanel.AutoScroll = true;
+            this.toolStripContainer.ContentPanel.Controls.Add(this.tableLayoutPanel);
+            this.toolStripContainer.ContentPanel.Size = new System.Drawing.Size(689, 386);
+            this.toolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripContainer.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer.Name = "toolStripContainer";
+            this.toolStripContainer.Size = new System.Drawing.Size(689, 433);
+            this.toolStripContainer.TabIndex = 21;
+            this.toolStripContainer.Text = "toolStripContainer1";
+            // 
+            // toolStripContainer.TopToolStripPanel
+            // 
+            this.toolStripContainer.TopToolStripPanel.Controls.Add(this.toolStrip);
+            // 
+            // tableLayoutPanel
+            // 
+            this.tableLayoutPanel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel.ColumnCount = 1;
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel.Controls.Add(this.textEntryBox, 0, 1);
+            this.tableLayoutPanel.Controls.Add(this.conversationBox, 0, 0);
+            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel.Name = "tableLayoutPanel";
+            this.tableLayoutPanel.RowCount = 2;
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel.Size = new System.Drawing.Size(689, 386);
+            this.tableLayoutPanel.TabIndex = 19;
+            // 
+            // textEntryBox
+            // 
+            this.textEntryBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textEntryBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textEntryBox.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEntryBox.Location = new System.Drawing.Point(4, 358);
+            this.textEntryBox.Name = "textEntryBox";
+            this.textEntryBox.Size = new System.Drawing.Size(681, 20);
+            this.textEntryBox.TabIndex = 18;
+            this.textEntryBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textEntryBox_KeyUp);
+            // 
+            // conversationBox
+            // 
+            this.conversationBox.AllowNavigation = false;
+            this.conversationBox.AllowWebBrowserDrop = false;
+            this.conversationBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.conversationBox.Location = new System.Drawing.Point(1, 1);
+            this.conversationBox.Margin = new System.Windows.Forms.Padding(0);
+            this.conversationBox.MinimumSize = new System.Drawing.Size(20, 20);
+            this.conversationBox.Name = "conversationBox";
+            this.conversationBox.ScriptErrorsSuppressed = true;
+            this.conversationBox.Size = new System.Drawing.Size(687, 353);
+            this.conversationBox.TabIndex = 17;
+            this.conversationBox.TabStop = false;
+            // 
+            // conversationTimer
+            // 
+            this.conversationTimer.Interval = 1000;
+            this.conversationTimer.Tick += new System.EventHandler(this.conversationTimer_Tick);
             // 
             // connectToolStripButton
             // 
@@ -200,6 +249,11 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             this.toolStripSeparator1.Visible = false;
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
             // 
             // helpToolStripButton
             // 
@@ -289,75 +343,41 @@
             this.restartBotToolStripMenuItem.Text = "&Restart bot";
             this.restartBotToolStripMenuItem.Click += new System.EventHandler(this.restartBotToolStripMenuItem_Click);
             // 
-            // toolStripContainer
+            // toolStrip
             // 
+            this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.connectToolStripButton,
+            this.reconnectToolStripButton,
+            this.toolStripSeparator2,
+            this.saveToolStripButton,
+            this.printToolStripButton,
+            this.toolStripSeparator,
+            this.copyToolStripButton,
+            this.toolStripSeparator3,
+            this.facebookToolStripButton,
+            this.toolStripSeparator1,
+            this.toolStripSeparator6,
+            this.helpToolStripButton,
+            this.currentbotToolStripButton,
+            this.SetIntrestsToolstripButton});
+            this.toolStrip.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Size = new System.Drawing.Size(689, 25);
+            this.toolStrip.Stretch = true;
+            this.toolStrip.TabIndex = 20;
+            this.toolStrip.Text = "Toolbar";
             // 
-            // toolStripContainer.BottomToolStripPanel
+            // SetIntrestsToolstripButton
             // 
-            this.toolStripContainer.BottomToolStripPanel.Controls.Add(this.statusStrip);
-            // 
-            // toolStripContainer.ContentPanel
-            // 
-            this.toolStripContainer.ContentPanel.AutoScroll = true;
-            this.toolStripContainer.ContentPanel.Controls.Add(this.tableLayoutPanel);
-            this.toolStripContainer.ContentPanel.Size = new System.Drawing.Size(689, 386);
-            this.toolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer.Name = "toolStripContainer";
-            this.toolStripContainer.Size = new System.Drawing.Size(689, 433);
-            this.toolStripContainer.TabIndex = 21;
-            this.toolStripContainer.Text = "toolStripContainer1";
-            // 
-            // toolStripContainer.TopToolStripPanel
-            // 
-            this.toolStripContainer.TopToolStripPanel.Controls.Add(this.toolStrip);
-            // 
-            // tableLayoutPanel
-            // 
-            this.tableLayoutPanel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tableLayoutPanel.ColumnCount = 1;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel.Controls.Add(this.textEntryBox, 0, 1);
-            this.tableLayoutPanel.Controls.Add(this.conversationBox, 0, 0);
-            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 2;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(689, 386);
-            this.tableLayoutPanel.TabIndex = 19;
-            // 
-            // textEntryBox
-            // 
-            this.textEntryBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textEntryBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEntryBox.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textEntryBox.Location = new System.Drawing.Point(4, 358);
-            this.textEntryBox.Name = "textEntryBox";
-            this.textEntryBox.Size = new System.Drawing.Size(681, 20);
-            this.textEntryBox.TabIndex = 18;
-            this.textEntryBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textEntryBox_KeyUp);
-            // 
-            // conversationBox
-            // 
-            this.conversationBox.AllowNavigation = false;
-            this.conversationBox.AllowWebBrowserDrop = false;
-            this.conversationBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.conversationBox.Location = new System.Drawing.Point(1, 1);
-            this.conversationBox.Margin = new System.Windows.Forms.Padding(0);
-            this.conversationBox.MinimumSize = new System.Drawing.Size(20, 20);
-            this.conversationBox.Name = "conversationBox";
-            this.conversationBox.ScriptErrorsSuppressed = true;
-            this.conversationBox.Size = new System.Drawing.Size(687, 353);
-            this.conversationBox.TabIndex = 17;
-            this.conversationBox.TabStop = false;
-            // 
-            // conversationTimer
-            // 
-            this.conversationTimer.Interval = 1000;
-            this.conversationTimer.Tick += new System.EventHandler(this.conversationTimer_Tick);
+            this.SetIntrestsToolstripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.SetIntrestsToolstripButton.Image = ((System.Drawing.Image)(resources.GetObject("SetIntrestsToolstripButton.Image")));
+            this.SetIntrestsToolstripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SetIntrestsToolstripButton.Name = "SetIntrestsToolstripButton";
+            this.SetIntrestsToolstripButton.Size = new System.Drawing.Size(23, 22);
+            this.SetIntrestsToolstripButton.Text = "toolStripButton1";
+            this.SetIntrestsToolstripButton.ToolTipText = "Set user Intrests";
+            this.SetIntrestsToolstripButton.Click += new System.EventHandler(this.SetIntrestsToolstripButton_Click);
             // 
             // Main
             // 
@@ -372,8 +392,6 @@
             this.Load += new System.EventHandler(this.Main_Load);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
-            this.toolStrip.ResumeLayout(false);
-            this.toolStrip.PerformLayout();
             this.toolStripContainer.BottomToolStripPanel.ResumeLayout(false);
             this.toolStripContainer.BottomToolStripPanel.PerformLayout();
             this.toolStripContainer.ContentPanel.ResumeLayout(false);
@@ -383,6 +401,8 @@
             this.toolStripContainer.PerformLayout();
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -391,33 +411,35 @@
 
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel statusStripLabel;
-        private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripContainer toolStripContainer;
-        private System.Windows.Forms.ToolStripButton saveToolStripButton;
-        private System.Windows.Forms.ToolStripButton printToolStripButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
-        private System.Windows.Forms.ToolStripButton copyToolStripButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripDropDownButton helpToolStripButton;
-        private System.Windows.Forms.ToolStripButton connectToolStripButton;
-        private System.Windows.Forms.ToolStripButton reconnectToolStripButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripDropDownButton currentbotToolStripButton;
-        private System.Windows.Forms.ToolStripMenuItem botEnabledToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem botStartsConversationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripButton facebookToolStripButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
         private System.Windows.Forms.TextBox textEntryBox;
         private System.Windows.Forms.WebBrowser conversationBox;
         private System.Windows.Forms.ToolStripStatusLabel statusStripTime;
         private System.Windows.Forms.Timer conversationTimer;
+        private System.Windows.Forms.ToolStrip toolStrip;
+        private System.Windows.Forms.ToolStripButton connectToolStripButton;
+        private System.Windows.Forms.ToolStripButton reconnectToolStripButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton saveToolStripButton;
+        private System.Windows.Forms.ToolStripButton printToolStripButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
+        private System.Windows.Forms.ToolStripButton copyToolStripButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton facebookToolStripButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripDropDownButton helpToolStripButton;
+        private System.Windows.Forms.ToolStripDropDownButton currentbotToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem botSelCleverbotToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem botsSeltPandoraBotToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem botSelJabberwackyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem botsSeltPandoraBotToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem botEnabledToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem botStartsConversationToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem restartBotToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton SetIntrestsToolstripButton;
     }
 }
 

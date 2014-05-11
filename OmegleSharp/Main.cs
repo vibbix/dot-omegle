@@ -56,7 +56,7 @@ namespace OmegleSharp
             omegle.StrangerStoppedTyping += new EventHandler(omegle_StrangerStoppedTyping);
             omegle.WaitingForPartner += new EventHandler(omegle_WaitingForPartner);
             omegle.WebException += new WebExceptionEvent(omegle_WebException);
-
+            omegle.SharedInterstsFound += new SharedInterestsFoundEvent(omegle_Sharedevents);
             #endregion omegle eventhandlers
 
             reconnectToolStripButton.Enabled = false;
@@ -435,6 +435,11 @@ namespace OmegleSharp
             WriteText("Exception: " + e.Exception.ToString(), Color.Red);
         }
 
+        private void omegle_Sharedevents(object sender, SharedInterestEventArgs s){
+            string[] interests = s.SharedInterests;
+            WriteText("Shared Interests: " + string.Join(", ", interests), Color.Crimson);
+        }
+
         #endregion omegle eventhandler methods
 
         /// <summary>
@@ -668,6 +673,21 @@ namespace OmegleSharp
         private void restartBotToolStripMenuItem_Click(object sender, EventArgs e)
         {
             session = bot.CreateSession();
+        }
+        /// <summary>
+        /// Set's interests for the omegle object
+        /// </summary>
+        /// <param name="sender">The source of the event</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void SetIntrestsToolstripButton_Click(object sender, EventArgs e)
+        {
+            CommonInterestsDialog cid = new CommonInterestsDialog();
+
+            cid.Interests = omegle.Interests;
+            cid.ShowDialog();
+            WriteText("Current Intrests are: " + string.Join(", ", cid.Interests), Color.MidnightBlue);
+            omegle.Interests = cid.Interests;
+            //Console.WriteLine(cid.Interests);
         }
     }
 }
